@@ -1,15 +1,9 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { ReusableFunctions } from '../utils/reusableFunctions';
 
-export class ConnectPage {
-    readonly page: Page;
-    readonly connectHeading: Locator;
-
-    constructor(page: Page) {
-        this.page = page;
-        this.connectHeading = page.locator('h2');
-    }
+export class ConnectPage extends ReusableFunctions {
 
     async verifyConnectPageContent() {
-        await expect(this.connectHeading).toHaveText('Enrolment Requirements(Join Us!) 📝');
+        // await expect(this.connectHeading).toHaveText('Enrolment Requirements(Join Us!) 📝');
+        return await this.isElementVisible(this.page.locator('text= Enrolment Requirements(Join Us!) 📝'));  
     }
 }

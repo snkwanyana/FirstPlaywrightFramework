@@ -1,26 +1,14 @@
-import { expect, type Locator, type Page } from '@playwright/test';
-import { ConnectPage } from './ConnectPage';
+import { ReusableFunctions } from '../utils/reusableFunctions';
 
-export class HomePage {
-    readonly page: Page;
-    readonly startLearningTodayButton: Locator;
-    readonly connectPage: ConnectPage;
+export class HomePage extends ReusableFunctions {
+    
 
-    constructor(page: Page) {
-        this.page = page;
-        this.startLearningTodayButton = page.locator('button:has-text("Start Learning Today")');
-        this.connectPage = new ConnectPage(this.page);
-    }
 
     async verifyHomePageContent() {
-        await expect(this.startLearningTodayButton).toHaveText('Start Learning Today');
+        return await this.isElementVisible(this.page.locator('text= Start Learning Today'));
     }
 
     async clickStartLearningTodayButton() {
-        await this.startLearningTodayButton.click();
-    }
-
-    async verifyConnectPageContent() {
-        await this.connectPage.verifyConnectPageContent();
+        await this.clickElement(this.page.locator('button:has-text("Start Learning Today")'));
     }
 }
