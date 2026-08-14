@@ -11,4 +11,12 @@ export class HomePage extends ReusableFunctions {
     async clickStartLearningTodayButton() {
         await this.clickElement(this.page.locator('button:has-text("Start Learning Today")'));
     }
+
+    async clickMainLoginButton() {
+        await this.clickElement(this.page.locator('//div[@class="nav-user-section"]'));
+    }
+
+    async clickLoginButton() {
+        await this.clickElement(this.page.locator('text=Login'));
+    }
 }

@@ -6,12 +6,14 @@ import { test as base, expect } from '@playwright/test';
 // These classes contain reusable actions and locators for the app pages.
 import { HomePage } from '../pages/HomePage';
 import { ConnectPage } from '../pages/ConnectPage';
+import { LoginPage } from '../pages/loginPage';
 
 // Define the shape of the custom fixtures that will be available in tests.
 // Each property tells TypeScript which page object type a fixture returns.
 type TestFixtures = {
     homePage: HomePage;
     connectPage: ConnectPage;
+    loginPage: LoginPage;
 };
 
 // Extend Playwright's base test with our custom fixtures.
@@ -28,6 +30,12 @@ export const test = base.extend<TestFixtures>({
     // This follows the same pattern as the HomePage fixture but creates a ConnectPage instance.
     connectPage: async ({ page }, use) => {
         await use(new ConnectPage(page));
+    },
+
+    // Create a fixture for LoginPage.
+    // This follows the same pattern as the other fixtures but creates a LoginPage instance.
+    loginPage: async ({ page }, use) => {
+        await use(new LoginPage(page));
     }
 });
 
