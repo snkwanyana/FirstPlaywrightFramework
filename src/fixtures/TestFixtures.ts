@@ -7,6 +7,7 @@ import { test as base, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { ConnectPage } from '../pages/ConnectPage';
 import { LoginPage } from '../pages/loginPage';
+import { DashboardPage } from '../pages/DashboardPage';
 
 // Define the shape of the custom fixtures that will be available in tests.
 // Each property tells TypeScript which page object type a fixture returns.
@@ -14,6 +15,7 @@ type TestFixtures = {
     homePage: HomePage;
     connectPage: ConnectPage;
     loginPage: LoginPage;
+    dashboardPage: DashboardPage;
 };
 
 // Extend Playwright's base test with our custom fixtures.
@@ -36,7 +38,13 @@ export const test = base.extend<TestFixtures>({
     // This follows the same pattern as the other fixtures but creates a LoginPage instance.
     loginPage: async ({ page }, use) => {
         await use(new LoginPage(page));
-    }
+    },
+    
+    // Create a fixture for DashboardPage.
+    // This follows the same pattern as the other fixtures but creates a DashboardPage instance.
+    dashboardPage: async ({ page }, use) => {
+        await use(new DashboardPage(page));
+    },
 });
 
 // Re-export Playwright's expect so tests can continue using it directly.

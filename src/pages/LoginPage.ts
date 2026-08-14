@@ -9,11 +9,11 @@ export class LoginPage extends ReusableFunctions {
     }
 
     async enterUsername(username: string) {
-        await this.typeText(this.page.locator('input[id="login-email"]'), username);
+        await this.typeText(this.page.locator('input[id="login-email"]'), username.trim());
     }
 
     async enterPassword(password: string) {
-        await this.typeText(this.page.locator('input[id="login-password"]'), password);
+        await this.typeText(this.page.locator('input[id="login-password"]'), password.trim());
     }
 
     async clickLoginButton() {
