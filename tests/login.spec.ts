@@ -15,7 +15,7 @@ test.describe('Login Page Tests', () => {
 
         // Add assertions to verify successful login, e.g., checking for a specific element on the home page.
         const isDashboardDisplayed = await dashboardPage.verifyDashboardPageIsDisplayed();
-        // await expect(isDashboardDisplayed).toBeTruthy();
-        await expect(isDashboardDisplayed).toBe(true);
+        await expect(isDashboardDisplayed).toBeTruthy();
+        console.log('Dashboard page is displayed:', isDashboardDisplayed);
     });
 });
