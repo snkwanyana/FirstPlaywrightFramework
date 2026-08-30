@@ -6,7 +6,7 @@ import { test as base, expect } from '@playwright/test';
 // These classes contain reusable actions and locators for the app pages.
 import { HomePage } from '../pages/HomePage';
 import { ConnectPage } from '../pages/ConnectPage';
-import { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../pages/LoginPage';
 import { DashboardPage } from '../pages/DashboardPage';
 
 // Define the shape of the custom fixtures that will be available in tests.
