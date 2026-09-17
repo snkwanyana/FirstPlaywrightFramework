@@ -20,8 +20,6 @@ This project uses Playwright with TypeScript to automate basic end-to-end checks
 - tests/
   - home.test.ts: home page navigation and content checks
   - hooks.spec.ts: basic navigation and button checks
-  - ndosi.test.ts: direct test examples using the target URL
-  - readURLFromConfig.test.ts: tests that use the configured base URL
 - src/pages/
   - HomePage.ts: page object model for the home page interactions
   - ConnectPage.ts: page object model for the connect/enrolment page assertions

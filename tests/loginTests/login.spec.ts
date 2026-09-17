@@ -25,4 +25,25 @@ test.describe('Login Page Tests', () => {
         await expect(isDashboardDisplayed).toBeTruthy();
         console.log('Dashboard page is displayed:', isDashboardDisplayed);
     });
+
+    test('Login with invalid credentials', async ({ page, loginPage, homePage }) => {
+        const invalidUsername = process.env.INVALID_LOGIN_USERNAME;
+        const invalidPassword = process.env.INVALID_LOGIN_PASSWORD;
+        if (!invalidUsername || !invalidPassword) {
+            throw new Error('invalidUsername/invalidPassword environment variables are not set. Check your .env file.');
+        }
+
+        await homePage.clickMainLoginButton();
+        await loginPage.verifyLoginPageContent();
+        await loginPage.enterUsername(invalidUsername);
+        await loginPage.enterPassword(invalidPassword);
+
+        const dialogPromise = page.waitForEvent('dialog');
+        await loginPage.clickLoginButton();
+
+        const dialog = await dialogPromise;
+        expect(dialog.type()).toBe('alert');
+        expect(dialog.message()).toBe('Invalid credentials. Please try again.');
+        await dialog.accept();
+    })
 });
