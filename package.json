@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Starter framework for Playwright tests",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:api": "playwright test -c config/playwright.config.ts", 
+    "test:web": "playwright test -c config/playwright.web.config.ts"
+  },
   "keywords": [],
   "author": "Sibusiso Nkwanyana",
   "license": "ISC",
@@ -13,6 +16,7 @@
     "@types/node": "^26.1.1"
   },
   "dependencies": {
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "playwright": "^1.64.1"
   }
 }
