@@ -1,5 +1,6 @@
 import { test,expect } from '@playwright/test';
-// import { requestOptions } from '../../playwright.config';
+
+let token = '';
 
 test('Normal user login', async ({ request }) => {
     const response = await request.post(process.env.API_BASE_URL + '/login', {
@@ -14,7 +15,18 @@ test('Normal user login', async ({ request }) => {
     const responseBody = await response.json();
     // console.log(responseBody);
     expect(responseBody).toHaveProperty('data.token');
-    const token = responseBody.data.token;
+    token = responseBody.data.token;
     console.log(token);
 
+});
+
+test('Use token to get user profile', async ({ request }) => {
+    const response = await request.get(process.env.API_BASE_URL + '/profile', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+    expect(response.status()).toBe(200);
+    const responseBody = await response.json();
+    console.log(responseBody);
 });
