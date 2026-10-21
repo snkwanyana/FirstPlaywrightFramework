@@ -8,9 +8,13 @@ test('Normal user login', async ({ request }) => {
             password: process.env.LOGIN_PASSWORD,
         },
     });
+    // await context.dispose();
     expect(response.status()).toBe(200);
-    expect(response.ok()).toBeTruthy();
+    // expect(response.ok()).toBeTruthy();
     const responseBody = await response.json();
-    console.log(responseBody);
+    // console.log(responseBody);
+    expect(responseBody).toHaveProperty('data.token');
+    const token = responseBody.data.token;
+    console.log(token);
 
 });
